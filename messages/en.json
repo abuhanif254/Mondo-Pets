@@ -1,0 +1,26 @@
+{
+  "HomePage": {
+    "title": "Welcome to Mondo Pets",
+    "subtitle": "Premium care, toys, and food for your beloved companions.",
+    "featuredToys": "Featured Toys",
+    "featuredFood": "Premium Pet Food",
+    "latestAdvice": "Latest Medical Advice",
+    "viewAll": "View All"
+  },
+  "ToysPage": {
+    "title": "Pet Toys",
+    "subtitle": "Safe, engaging, and durable toys for all animals."
+  },
+  "FoodPage": {
+    "title": "Pet Food",
+    "subtitle": "Nutritious and delicious meals for your pets."
+  },
+  "CarePage": {
+    "title": "Care & Treatment",
+    "subtitle": "Expert advice from wise doctors for your pet's well-being."
+  },
+  "BlogPage": {
+    "title": "Mondo Pets Blog",
+    "subtitle": "Read the latest tips, tricks, and health advice."
+  }
+}
