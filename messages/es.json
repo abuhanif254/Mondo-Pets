@@ -1,0 +1,87 @@
+{
+  "HomePage": {
+    "title": "Bienvenido a Mondo Pets",
+    "subtitle": "Atención, juguetes y alimentación de primera calidad para sus queridos compañeros.",
+    "featuredToys": "Juguetes Destacados",
+    "featuredFood": "Comida Premium",
+    "latestAdvice": "Últimos Consejos Médicos",
+    "viewAll": "Ver Todos"
+  },
+  "ToysPage": {
+    "title": "Juguetes para Mascotas",
+    "subtitle": "Juguetes seguros, atractivos y duraderos para todos los animales."
+  },
+  "FoodPage": {
+    "title": "Comida para Mascotas",
+    "subtitle": "Comidas nutritivas y deliciosas para sus mascotas."
+  },
+  "CarePage": {
+    "title": "Cuidados y Tratamientos",
+    "subtitle": "Consejos expertos de médicos sabios para el bienestar de su mascota."
+  },
+  "BlogPage": {
+    "title": "Blog de Mondo Pets",
+    "subtitle": "Lea los últimos consejos, trucos y recomendaciones de salud."
+  },
+  "RightSidebar": {
+    "trendingDeals": "Ofertas de Tendencia",
+    "highlyClicked": "Muy Clickeado",
+    "joinClubTitle": "Únete al Club MondoPets",
+    "joinClubDesc": "Obtén ofertas exclusivas, acceso anticipado y más en tu bandeja de entrada.",
+    "emailPlaceholder": "Ingresa tu correo...",
+    "joinBtn": "Unirse"
+  },
+  "ProductDetail": {
+    "backTo": "Volver a",
+    "buyNow": "Comprar ahora en el minorista",
+    "affiliateDisclaimer": "Las ganancias van al minorista externo. Podemos ganar una comisión de afiliado.",
+    "secureCheckout": "Pago Seguro",
+    "fastShipping": "Envío Rápido",
+    "easyReturns": "Devoluciones Fáciles"
+  },
+  "SearchOverlay": {
+    "placeholder": "Busca productos, blogs, y más...",
+    "searching": "Buscando...",
+    "noResults": "No se encontraron resultados para",
+    "typeMore": "Escribe al menos 2 caracteres para buscar.",
+    "products": "Productos",
+    "articles": "Artículos"
+  },
+  "Navbar": {
+    "shop": "Tienda",
+    "toys": "Juguetes y Accesorios",
+    "toysDesc": "Mantenlos entretenidos",
+    "food": "Comida Premium",
+    "foodDesc": "Dietas saludables para mascotas",
+    "learn": "Aprender",
+    "care": "Cuidado y Tratamiento",
+    "careDesc": "Guías y consejos médicos",
+    "blog": "Blog de Mascotas",
+    "blogDesc": "Consejos, noticias e historias",
+    "forum": "Foro",
+    "deals": "Ofertas",
+    "newArrivals": "Novedades"
+  },
+  "LeftSidebar": {
+    "home": "Inicio",
+    "categories": "Categorías",
+    "deals": "Ofertas",
+    "hot": "Top",
+    "newArrivals": "Novedades",
+    "brands": "Marcas",
+    "collections": "Colecciones",
+    "myOrders": "Mis Pedidos",
+    "wishlist": "Favoritos",
+    "coupons": "Cupones",
+    "addresses": "Direcciones",
+    "accountSettings": "Ajustes",
+    "specialOffer": "Oferta Especial",
+    "summerSale": "Rebajas de Verano",
+    "upTo50Off": "Hasta 50% Dcto",
+    "shopNow": "Comprar Ahora",
+    "needHelp": "¿Ayuda?",
+    "supportCenter": "Soporte 24/7",
+    "darkMode": "Modo Oscuro",
+    "lightMode": "Modo Claro"
+  }
+}

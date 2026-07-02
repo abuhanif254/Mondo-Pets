@@ -22,5 +22,66 @@
   "BlogPage": {
     "title": "Mondo Pets Blog",
     "subtitle": "Read the latest tips, tricks, and health advice."
+  },
+  "RightSidebar": {
+    "trendingDeals": "Trending Deals",
+    "highlyClicked": "Highly Clicked",
+    "joinClubTitle": "Join MondoPets Club",
+    "joinClubDesc": "Get exclusive deals, early access and more sent directly to your inbox.",
+    "emailPlaceholder": "Enter your email...",
+    "joinBtn": "Join"
+  },
+  "ProductDetail": {
+    "backTo": "Back to",
+    "buyNow": "Buy Now on Retailer",
+    "affiliateDisclaimer": "Proceeds to external retailer. We may earn an affiliate commission.",
+    "secureCheckout": "Secure Checkout",
+    "fastShipping": "Fast Shipping",
+    "easyReturns": "Easy Returns"
+  },
+  "SearchOverlay": {
+    "placeholder": "Search products, blogs, and more...",
+    "searching": "Searching...",
+    "noResults": "No results found for",
+    "typeMore": "Type at least 2 characters to search.",
+    "products": "Products",
+    "articles": "Articles"
+  },
+  "Navbar": {
+    "shop": "Shop",
+    "toys": "Toys & Accessories",
+    "toysDesc": "Keep them entertained",
+    "food": "Premium Food",
+    "foodDesc": "Healthy diets for all pets",
+    "learn": "Learn",
+    "care": "Care & Treatment",
+    "careDesc": "Medical advice & guides",
+    "blog": "Pet Blog",
+    "blogDesc": "Tips, news and stories",
+    "forum": "Forum",
+    "deals": "Deals",
+    "newArrivals": "New Arrivals"
+  },
+  "LeftSidebar": {
+    "home": "Home",
+    "categories": "Categories",
+    "deals": "Deals",
+    "hot": "Hot",
+    "newArrivals": "New Arrivals",
+    "brands": "Brands",
+    "collections": "Collections",
+    "myOrders": "My Orders",
+    "wishlist": "Wishlist",
+    "coupons": "Coupons",
+    "addresses": "Addresses",
+    "accountSettings": "Account Settings",
+    "specialOffer": "Special Offer",
+    "summerSale": "Summer Sale",
+    "upTo50Off": "Up to 50% Off",
+    "shopNow": "Shop Now",
+    "needHelp": "Need Help?",
+    "supportCenter": "24/7 Support Center",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode"
   }
 }

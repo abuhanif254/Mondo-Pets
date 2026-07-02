@@ -1,0 +1,4 @@
+title,price,commissionRate,imageUrl,affiliateUrl,amazonUrl,chewyUrl,type,petType,categorySlug,ingredients
+"CSV Imported Premium Dog Bed",89.99,6.0,/placeholder.jpg,https://amazon.com,toy,dog
+"CSV Imported Catnip Treats",14.50,4.5,/placeholder.jpg,https://amazon.com,food,cat
+"CSV Imported Bird Cage Setup",149.00,8.0,/placeholder.jpg,https://amazon.com,toy,bird

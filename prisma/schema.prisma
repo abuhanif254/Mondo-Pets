@@ -21,16 +21,50 @@ model Category {
 }
 
 model Product {
-  id           String    @id @default(cuid())
-  title        String
-  price        String    // Stored as string to handle currency symbols or decimals easily for display
-  imageUrl     String?
-  affiliateUrl String
-  type         String    // "toy" or "food"
-  categoryId   String
-  category     Category  @relation(fields: [categoryId], references: [id])
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  id              String    @id @default(cuid())
+  title           String
+  description     String?   @db.Text
+  price           Decimal   @db.Decimal(10, 2)
+  originalPrice   Decimal?  @db.Decimal(10, 2)
+  currency        String    @default("USD")
+  commissionRate  Decimal?  @db.Decimal(5, 2)
+  estimatedMargin Decimal?  @db.Decimal(10, 2)
+  brand           String?
+  lifeStage       String?   // e.g., "Puppy", "Adult", "Senior"
+  dietaryNeeds    String?   // e.g., "Grain-Free", "High-Protein"
+  clickCount      Int       @default(0)
+  imageUrl        String?
+  amazonUrl       String?
+  amazonASIN      String?   // For PA-API syncing
+  lastPriceSync   DateTime?
+  inStock         Boolean   @default(true)
+  chewyUrl        String?
+  affiliateUrl    String?   // For other programs
+  type            String    // "toy" or "food"
+  petType         String?   // e.g., "Dog", "Cat", "Bird"
+  
+  // Nutritional & Ingredients Data
+  ingredients     String?   @db.Text
+  proteinPercent  Decimal?  @db.Decimal(5, 2)
+  fatPercent      Decimal?  @db.Decimal(5, 2)
+  fiberPercent    Decimal?  @db.Decimal(5, 2)
+  moisturePercent Decimal?  @db.Decimal(5, 2)
+  caloricContent  String?   // e.g., "350 kcal/cup"
+  editorRating    Decimal?  @db.Decimal(3, 1) // e.g., 4.5
+
+  categoryId      String
+  category        Category  @relation(fields: [categoryId], references: [id])
+  clickEvents     ClickEvent[]
+  reviews         Review[]
+  questions       Question[]
+  priceAlerts     PriceAlert[]
+  wishlistItems   WishlistItem[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([clickCount(sort: Desc)])
+  @@index([categoryId])
+  @@index([type])
 }
 
 model Author {
@@ -57,4 +91,193 @@ model Blog {
   category    Category  @relation(fields: [categoryId], references: [id])
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+
+  @@index([categoryId])
+  @@index([authorId])
+}
+
+model ClickEvent {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  badges    String[] // e.g. ["top_reviewer", "pet_parent", "deal_hunter"]
+  pets      Pet[]
+  wishlistItems WishlistItem[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Pet {
+  id        String   @id @default(cuid())
+  name      String
+  type      String   // e.g., "Dog", "Cat", "Bird"
+  breed     String?
+  age       Int?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Coupon {
+  id            String    @id @default(cuid())
+  code          String
+  description   String
+  retailerName  String
+  discountValue String
+  affiliateUrl  String
+  expiresAt     DateTime?
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([isActive])
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  rating      Int
+  title       String
+  content     String   @db.Text
+  authorName  String
+  petType     String?  // e.g., 'Dog', 'Cat'
+  pros        String?  @db.Text
+  cons        String?  @db.Text
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([productId])
+}
+
+model Question {
+  id          String   @id @default(cuid())
+  content     String   @db.Text
+  authorName  String
+  answer      String?  @db.Text
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([productId])
+}
+
+model SiteFeedback {
+  id          String   @id @default(cuid())
+  rating      Int
+  content     String   @db.Text
+  authorName  String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model HeroSlide {
+  id              String   @id @default(cuid())
+  title           String
+  subtitle        String?
+  ctaText         String
+  ctaUrl          String
+  imageUrl        String?
+  backgroundColor String
+  order           Int      @default(0)
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([isActive])
+  @@index([order])
+}
+
+model TopBannerAd {
+  id        String   @id @default(cuid())
+  text      String
+  linkUrl   String?
+  bgColor   String   @default("#e6f4ca")
+  textColor String   @default("#2c5305")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Listicle {
+  id          String   @id @default(cuid())
+  title       String   // e.g., "Best Grain-Free Dog Foods"
+  slug        String   @unique
+  description String?  @db.Text
+  seoTitle    String?
+  seoDesc     String?
+  
+  // Filter settings to automatically query products
+  petType     String?  // e.g., "Dog", "Cat"
+  productType String?  // e.g., "food", "toy"
+  minRating   Decimal? @db.Decimal(3, 1) // e.g., 4.5
+  dietaryNeeds String? // e.g., "Grain-Free"
+
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+
+
+  @@index([slug])
+  @@index([isActive])
+}
+
+model PriceAlert {
+  id        String   @id @default(cuid())
+  email     String
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@index([productId])
+}
+
+model BrandProfile {
+  id            String   @id @default(cuid())
+  name          String   @unique
+  slug          String   @unique
+  description   String?  @db.Text
+  logoUrl       String?
+  recallHistory String?  @db.Text
+  foundedYear   Int?
+  headquarters  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([slug])
+}
+
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+  @@index([userId])
 }

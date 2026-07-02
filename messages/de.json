@@ -1,0 +1,87 @@
+{
+  "HomePage": {
+    "title": "Willkommen bei Mondo Pets",
+    "subtitle": "Erstklassige Pflege, Spielzeug und Futter für Ihre geliebten Begleiter.",
+    "featuredToys": "Beliebte Spielzeuge",
+    "featuredFood": "Premium Tiernahrung",
+    "latestAdvice": "Aktuelle medizinische Ratschläge",
+    "viewAll": "Alle ansehen"
+  },
+  "ToysPage": {
+    "title": "Tierspielzeug",
+    "subtitle": "Sichere, ansprechende und langlebige Spielzeuge für alle Tiere."
+  },
+  "FoodPage": {
+    "title": "Tiernahrung",
+    "subtitle": "Nahrhafte und leckere Mahlzeiten für Ihre Haustiere."
+  },
+  "CarePage": {
+    "title": "Pflege & Behandlung",
+    "subtitle": "Kompetente Beratung durch erfahrene Tierärzte für das Wohlbefinden Ihres Haustieres."
+  },
+  "BlogPage": {
+    "title": "Mondo Pets Blog",
+    "subtitle": "Lesen Sie die neuesten Tipps, Tricks und Gesundheitsratschläge."
+  },
+  "RightSidebar": {
+    "trendingDeals": "Trend-Angebote",
+    "highlyClicked": "Häufig Geklickt",
+    "joinClubTitle": "MondoPets Club Beitreten",
+    "joinClubDesc": "Erhalten Sie exklusive Angebote, Vorabzugang und mehr direkt in Ihren Posteingang.",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail ein...",
+    "joinBtn": "Beitreten"
+  },
+  "ProductDetail": {
+    "backTo": "Zurück zu",
+    "buyNow": "Jetzt beim Händler kaufen",
+    "affiliateDisclaimer": "Der Erlös geht an den externen Händler. Wir können eine Affiliate-Provision verdienen.",
+    "secureCheckout": "Sichere Kasse",
+    "fastShipping": "Schneller Versand",
+    "easyReturns": "Einfache Rückgabe"
+  },
+  "SearchOverlay": {
+    "placeholder": "Suche nach Produkten, Blogs und mehr...",
+    "searching": "Suchen...",
+    "noResults": "Keine Ergebnisse gefunden für",
+    "typeMore": "Tippen Sie mindestens 2 Zeichen, um zu suchen.",
+    "products": "Produkte",
+    "articles": "Artikel"
+  },
+  "Navbar": {
+    "shop": "Shop",
+    "toys": "Spielzeug & Zubehör",
+    "toysDesc": "Halten Sie sie unterhalten",
+    "food": "Premium-Futter",
+    "foodDesc": "Gesunde Ernährung für Tiere",
+    "learn": "Lernen",
+    "care": "Pflege & Behandlung",
+    "careDesc": "Medizinische Tipps & Ratgeber",
+    "blog": "Haustier-Blog",
+    "blogDesc": "Tipps, News und Geschichten",
+    "forum": "Forum",
+    "deals": "Angebote",
+    "newArrivals": "Neuheiten"
+  },
+  "LeftSidebar": {
+    "home": "Startseite",
+    "categories": "Kategorien",
+    "deals": "Angebote",
+    "hot": "Heiß",
+    "newArrivals": "Neuheiten",
+    "brands": "Marken",
+    "collections": "Kollektionen",
+    "myOrders": "Meine Bestellungen",
+    "wishlist": "Wunschzettel",
+    "coupons": "Gutscheine",
+    "addresses": "Adressen",
+    "accountSettings": "Kontoeinstellungen",
+    "specialOffer": "Sonderangebot",
+    "summerSale": "Sommerschlussverkauf",
+    "upTo50Off": "Bis zu 50% Rabatt",
+    "shopNow": "Jetzt Kaufen",
+    "needHelp": "Brauchen Sie Hilfe?",
+    "supportCenter": "24/7 Support-Center",
+    "darkMode": "Dunkler Modus",
+    "lightMode": "Heller Modus"
+  }
+}
