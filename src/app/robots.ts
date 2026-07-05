@@ -5,7 +5,13 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/admin', '/api/'], // We will add an /admin route later that should not be indexed
+      disallow: [
+        '/admin',
+        '/admin/',
+        '/api/',
+        '/_next/',
+      ],
+      crawlDelay: 2,
     },
     sitemap: 'https://mondopets.com/sitemap.xml',
   };

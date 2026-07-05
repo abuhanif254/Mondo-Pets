@@ -4,7 +4,7 @@
     "subtitle": "Premium care, toys, and food for your beloved companions.",
     "featuredToys": "Featured Toys",
     "featuredFood": "Premium Pet Food",
-    "latestAdvice": "Latest Medical Advice",
+    "latestAdvice": "Latest Pet Advice",
     "viewAll": "View All"
   },
   "ToysPage": {
@@ -20,8 +20,28 @@
     "subtitle": "Expert advice from wise doctors for your pet's well-being."
   },
   "BlogPage": {
-    "title": "Mondo Pets Blog",
-    "subtitle": "Read the latest tips, tricks, and health advice."
+    "title": "Pet Advice",
+    "subtitle": "Expert-written guides, health tips & trusted product advice for pet owners.",
+    "heroEyebrow": "by Mondo Pets",
+    "featuredLabel": "Featured Article",
+    "allArticles": "All Articles",
+    "filterAll": "All Topics",
+    "filterDogs": "Dogs",
+    "filterCats": "Cats",
+    "filterNutrition": "Nutrition",
+    "filterHealth": "Health",
+    "filterTraining": "Training",
+    "filterGrooming": "Grooming",
+    "readMore": "Read Article",
+    "readTime": "min read",
+    "by": "By",
+    "searchPlaceholder": "Search articles...",
+    "noResults": "No articles found.",
+    "latestArticles": "Latest Articles",
+    "popularThis": "Popular This Week",
+    "loadMore": "Load More Articles",
+    "breadcrumbHome": "Home",
+    "breadcrumbBlog": "Pet Advice"
   },
   "RightSidebar": {
     "trendingDeals": "Trending Deals",
@@ -40,7 +60,7 @@
     "easyReturns": "Easy Returns"
   },
   "SearchOverlay": {
-    "placeholder": "Search products, blogs, and more...",
+    "placeholder": "Search products, articles, and more...",
     "searching": "Searching...",
     "noResults": "No results found for",
     "typeMore": "Type at least 2 characters to search.",
@@ -56,8 +76,8 @@
     "learn": "Learn",
     "care": "Care & Treatment",
     "careDesc": "Medical advice & guides",
-    "blog": "Pet Blog",
-    "blogDesc": "Tips, news and stories",
+    "blog": "Pet Advice",
+    "blogDesc": "Expert tips, health guides & more",
     "forum": "Forum",
     "deals": "Deals",
     "newArrivals": "New Arrivals"

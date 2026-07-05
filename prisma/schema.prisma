@@ -23,6 +23,7 @@ model Category {
 model Product {
   id              String    @id @default(cuid())
   title           String
+  slug            String    @unique @default(cuid())
   description     String?   @db.Text
   price           Decimal   @db.Decimal(10, 2)
   originalPrice   Decimal?  @db.Decimal(10, 2)
@@ -73,27 +74,39 @@ model Author {
   credentials String    // e.g., "DVM, Veterinary Orthopedics"
   avatarUrl   String?
   bio         String?
+  twitterUrl  String?
+  websiteUrl  String?
+  expertise   String[]  // e.g., ["Nutrition", "Orthopedics"]
   blogs       Blog[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
 
 model Blog {
-  id          String    @id @default(cuid())
-  title       String
-  slug        String    @unique
-  excerpt     String
-  content     String    // HTML or Markdown
-  publishedAt DateTime  @default(now())
-  authorId    String
-  author      Author    @relation(fields: [authorId], references: [id])
-  categoryId  String
-  category    Category  @relation(fields: [categoryId], references: [id])
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id               String    @id @default(cuid())
+  title            String
+  slug             String    @unique
+  excerpt          String
+  content          String    // HTML or Markdown
+  coverImageUrl    String?   // Hero image for card and post header
+  readTimeMinutes  Int?      // Estimated reading time in minutes
+  viewCount        Int       @default(0)
+  tags             String[]  // e.g., ["dogs", "health", "arthritis"]
+  isFeatured       Boolean   @default(false)
+  metaTitle        String?   // Custom SEO title override
+  metaDescription  String?   // Custom SEO description override
+  publishedAt      DateTime  @default(now())
+  authorId         String
+  author           Author    @relation(fields: [authorId], references: [id])
+  categoryId       String
+  category         Category  @relation(fields: [categoryId], references: [id])
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 
   @@index([categoryId])
   @@index([authorId])
+  @@index([isFeatured])
+  @@index([viewCount(sort: Desc)])
 }
 
 model ClickEvent {
@@ -163,10 +176,12 @@ model Review {
   cons        String?  @db.Text
   productId   String
   product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  isApproved  Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@index([productId])
+  @@index([isApproved])
 }
 
 model Question {
@@ -176,10 +191,12 @@ model Question {
   answer      String?  @db.Text
   productId   String
   product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  isApproved  Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@index([productId])
+  @@index([isApproved])
 }
 
 model SiteFeedback {
@@ -280,4 +297,17 @@ model WishlistItem {
 
   @@unique([userId, productId])
   @@index([userId])
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([isRead])
+  @@index([createdAt(sort: Desc)])
 }

@@ -65,7 +65,7 @@ export function AIAssistant() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors"
+            className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] lg:bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors"
             aria-label="Open AI Assistant"
           >
             <Bot className="h-6 w-6" />
@@ -81,7 +81,7 @@ export function AIAssistant() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed bottom-6 right-6 z-50 w-[90vw] max-w-[380px] h-[500px] max-h-[80vh] flex flex-col bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
+            className="fixed bottom-[calc(80px+env(safe-area-inset-bottom))] lg:bottom-6 right-6 z-50 w-[90vw] max-w-[380px] h-[500px] max-h-[80vh] flex flex-col bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="bg-primary p-4 flex justify-between items-center text-primary-foreground shadow-sm z-10">

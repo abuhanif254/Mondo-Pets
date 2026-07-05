@@ -141,7 +141,7 @@ export async function getLatestBlogs() {
     return await prisma.blog.findMany({
       take: 3,
       orderBy: { createdAt: 'desc' },
-      include: { author: true }
+      include: { author: true, category: true }
     });
   } catch (error) {
     console.error('Failed to fetch blogs:', error);
@@ -149,15 +149,132 @@ export async function getLatestBlogs() {
   }
 }
 
-export async function getBlogs() {
+export async function getBlogs(categorySlug?: string) {
   try {
+    const whereClause: any = {};
+    if (categorySlug && categorySlug !== 'all') {
+      whereClause.category = { slug: categorySlug };
+    }
     return await prisma.blog.findMany({
-      orderBy: { createdAt: 'desc' },
-      include: { author: true }
+      where: whereClause,
+      orderBy: [
+        { isFeatured: 'desc' },
+        { createdAt: 'desc' }
+      ],
+      include: { author: true, category: true }
     });
   } catch (error) {
     console.error('Failed to fetch blogs:', error);
     return [];
+  }
+}
+
+export async function getPopularBlogs(take = 5) {
+  try {
+    return await prisma.blog.findMany({
+      take,
+      orderBy: { viewCount: 'desc' },
+      include: { category: true }
+    });
+  } catch (error) {
+    console.error('Failed to fetch popular blogs:', error);
+    return [];
+  }
+}
+
+export async function getSidebarAffiliateProducts(take = 3) {
+  try {
+    return await prisma.product.findMany({
+      take,
+      where: {
+        OR: [
+          { affiliateUrl: { not: null } },
+          { amazonUrl: { not: null } },
+          { chewyUrl: { not: null } },
+        ],
+        editorRating: { not: null },
+      },
+      orderBy: { editorRating: 'desc' },
+      select: {
+        id: true,
+        title: true,
+        price: true,
+        imageUrl: true,
+        affiliateUrl: true,
+        amazonUrl: true,
+        chewyUrl: true,
+        editorRating: true,
+        brand: true,
+      },
+    });
+  } catch (error) {
+    console.error('Failed to fetch sidebar affiliate products:', error);
+    return [];
+  }
+}
+
+
+export async function getBlogBySlug(slug: string) {
+  try {
+    return await prisma.blog.findUnique({
+      where: { slug },
+      include: { author: true, category: true }
+    });
+  } catch (error) {
+    console.error(`Failed to fetch blog by slug ${slug}:`, error);
+    return null;
+  }
+}
+
+export async function getAllBlogSlugs() {
+  try {
+    return await prisma.blog.findMany({
+      select: { slug: true }
+    });
+  } catch (error) {
+    console.error('Failed to fetch blog slugs:', error);
+    return [];
+  }
+}
+
+export async function getRelatedBlogs(categoryId: string, excludeSlug: string, take = 3) {
+  try {
+    return await prisma.blog.findMany({
+      where: {
+        categoryId,
+        slug: { not: excludeSlug }
+      },
+      take,
+      orderBy: { createdAt: 'desc' },
+      include: { author: true, category: true }
+    });
+  } catch (error) {
+    console.error('Failed to fetch related blogs:', error);
+    return [];
+  }
+}
+
+export async function incrementBlogViewCount(slug: string) {
+  try {
+    await prisma.blog.update({
+      where: { slug },
+      data: { viewCount: { increment: 1 } }
+    });
+  } catch (error) {
+    console.error(`Failed to increment view count for blog ${slug}:`, error);
+  }
+}
+
+export async function getMidArticleAffiliateProduct(categoryId: string) {
+  try {
+    const product = await prisma.product.findFirst({
+      where: { categoryId },
+      orderBy: { clickCount: 'desc' }
+    });
+    return product ? serializeProduct(product) : null;
+  } catch (error) {
+    console.error('Failed to fetch mid-article affiliate product:', error);
+    return null;
   }
 }
 
@@ -977,5 +1094,130 @@ export async function getSiteFeedback() {
   } catch (error) {
     console.error('Failed to fetch site feedback:', error);
     return [];
+  }
+}
+
+// ─────────────────────────────────────────────
+// ADMIN: Blog CRUD Actions
+// ─────────────────────────────────────────────
+
+export async function getAdminBlogs() {
+  try {
+    return await prisma.blog.findMany({
+      orderBy: { createdAt: 'desc' },
+      include: { author: { select: { name: true } }, category: { select: { name: true } } }
+    });
+  } catch (error) {
+    console.error('Failed to fetch admin blogs:', error);
+    return [];
+  }
+}
+
+export async function getAdminAuthors() {
+  try {
+    return await prisma.author.findMany({ orderBy: { name: 'asc' } });
+  } catch (error) {
+    console.error('Failed to fetch admin authors:', error);
+    return [];
+  }
+}
+
+export async function getAdminBlogCategories() {
+  try {
+    return await prisma.category.findMany({ orderBy: { name: 'asc' } });
+  } catch (error) {
+    console.error('Failed to fetch blog categories:', error);
+    return [];
+  }
+}
+
+export async function getAdminBlogById(id: string) {
+  try {
+    return await prisma.blog.findUnique({
+      where: { id },
+      include: { author: true, category: true }
+    });
+  } catch (error) {
+    console.error(`Failed to fetch blog ${id}:`, error);
+    return null;
+  }
+}
+
+export async function createBlog(data: {
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  coverImageUrl?: string;
+  categoryId: string;
+  authorId: string;
+  tags: string[];
+  readTimeMinutes?: number;
+  isFeatured: boolean;
+  metaTitle?: string;
+  metaDescription?: string;
+}) {
+  try {
+    const blog = await prisma.blog.create({
+      data: {
+        title: data.title,
+        slug: data.slug,
+        excerpt: data.excerpt,
+        content: data.content,
+        coverImageUrl: data.coverImageUrl || null,
+        categoryId: data.categoryId,
+        authorId: data.authorId,
+        tags: data.tags,
+        readTimeMinutes: data.readTimeMinutes || null,
+        isFeatured: data.isFeatured,
+        metaTitle: data.metaTitle || null,
+        metaDescription: data.metaDescription || null,
+        publishedAt: new Date(),
+        viewCount: 0,
+      }
+    });
+    return { success: true, id: blog.id };
+  } catch (error: any) {
+    console.error('Failed to create blog:', error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function updateBlog(id: string, data: {
+  title?: string;
+  slug?: string;
+  excerpt?: string;
+  content?: string;
+  coverImageUrl?: string;
+  categoryId?: string;
+  authorId?: string;
+  tags?: string[];
+  readTimeMinutes?: number | null;
+  isFeatured?: boolean;
+  metaTitle?: string;
+  metaDescription?: string;
+}) {
+  try {
+    await prisma.blog.update({
+      where: { id },
+      data: {
+        ...data,
+        updatedAt: new Date(),
+      }
+    });
+    return { success: true };
+  } catch (error: any) {
+    console.error('Failed to update blog:', error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function deleteBlog(id: string) {
+  try {
+    await prisma.blog.delete({ where: { id } });
+    return { success: true };
+  } catch (error: any) {
+    console.error('Failed to delete blog:', error);
+    return { success: false, error: error.message };
   }
 }

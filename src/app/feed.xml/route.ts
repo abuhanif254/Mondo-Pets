@@ -18,15 +18,16 @@ export async function GET() {
       }
     });
 
-    // 2. Fetch latest listicles
-    const listicles = await prisma.listicle.findMany({
+    // 2. Fetch latest blogs
+    const blogs = await prisma.blog.findMany({
       take: 10,
-      orderBy: { createdAt: 'desc' },
+      orderBy: { publishedAt: 'desc' },
       select: {
         slug: true,
         title: true,
-        description: true,
-        createdAt: true,
+        excerpt: true,
+        publishedAt: true,
+        coverImageUrl: true,
       }
     });
 
@@ -35,15 +36,16 @@ export async function GET() {
       ...products.map(p => ({
         title: `New Product Reviewed: ${p.title}`,
         link: `${SITE_URL}/en/products/${p.id}`,
-        description: p.description || `Check out our latest review for ${p.title}.`,
+        description: `${p.description || `Check out our latest review for ${p.title}.`} <br><br><em>Note: If you purchase through our links, we may earn an affiliate commission.</em>`,
         date: p.createdAt,
         imageUrl: p.imageUrl,
       })),
-      ...listicles.map(l => ({
-        title: l.title,
-        link: `${SITE_URL}/en/best/${l.slug}`,
-        description: l.description || '',
-        date: l.createdAt,
+      ...blogs.map(b => ({
+        title: b.title,
+        link: `${SITE_URL}/en/blog/${b.slug}`,
+        description: `${b.excerpt || ''} <br><br><em>Note: If you purchase through our links, we may earn an affiliate commission.</em>`,
+        date: b.publishedAt || new Date(),
+        imageUrl: b.coverImageUrl,
       }))
     ].sort((a, b) => b.date.getTime() - a.date.getTime()).slice(0, 15); // Top 15 total items
 

@@ -1,23 +1,37 @@
-import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
-import {notFound} from 'next/navigation';
-import {routing} from '@/i18n/routing';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
 import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
 import { AIAssistant } from '@/components/AIAssistant';
+import dynamic from 'next/dynamic';
+
+const Footer = dynamic(() => import('@/components/Footer').then(mod => mod.Footer));
+const CookieBanner = dynamic(() => import('@/components/CookieBanner').then(mod => mod.CookieBanner));
 import { AuthProvider } from '@/context/AuthContext';
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Bricolage_Grotesque } from "next/font/google";
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+export const viewport: Viewport = {
+  themeColor: '#4f46e5',
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
+
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
+  display: "swap",
+  weight: ["600", "700", "800"],
 });
 
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -25,26 +39,32 @@ import { WishlistProvider } from "@/context/WishlistContext";
 import { CompareProvider } from "@/context/CompareContext";
 import { CompareBar } from "@/components/CompareBar";
 
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   
+  const siteName = 'Mondo Pets';
+  const defaultTitle = 'Mondo Pets | Expert Pet Advice, Reviews & Care Guides';
+  const defaultDescription = 'Discover premium pet care tips, in-depth product reviews, and expert advice for your dogs, cats, and small animals. We help you find the best for your furry friends.';
+  
   return {
     title: {
-      template: '%s | Mondo Pets',
-      default: 'Mondo Pets',
+      template: `%s | ${siteName}`,
+      default: defaultTitle,
     },
-    description: "Premium pet care, toys, and food.",
+    description: defaultDescription,
+    keywords: ['pet care', 'dog food reviews', 'cat toys', 'pet health advice', 'pet product reviews'],
     openGraph: {
-      title: 'Mondo Pets',
-      description: 'Premium pet care, toys, and food for your beloved companions.',
+      title: defaultTitle,
+      description: defaultDescription,
       url: `https://mondopets.com/${locale}`,
-      siteName: 'Mondo Pets',
+      siteName: siteName,
       images: [
         {
           url: 'https://mondopets.com/og-image.jpg', // Placeholder for actual OG image
           width: 1200,
           height: 630,
-          alt: 'Mondo Pets - Premium Pet Care',
+          alt: 'Mondo Pets - Premium Pet Care & Reviews',
         },
       ],
       locale: locale,
@@ -52,8 +72,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Mondo Pets',
-      description: 'Premium pet care, toys, and food for your beloved companions.',
+      title: defaultTitle,
+      description: defaultDescription,
       images: ['https://mondopets.com/og-image.jpg'],
     },
     alternates: {
@@ -65,6 +85,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         'de': 'https://mondopets.com/de',
         'es': 'https://mondopets.com/es',
       },
+    },
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: 'default',
+      title: siteName,
+    },
+    formatDetection: {
+      telephone: false,
     },
   };
 }
@@ -94,7 +122,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col antialiased`}
+        className={`${inter.variable} ${bricolage.variable} min-h-full flex flex-col antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider
@@ -118,6 +146,7 @@ export default async function RootLayout({
                     <CompareBar />
                   </div>
                   <AIAssistant />
+                  <CookieBanner />
                 </NextIntlClientProvider>
               </AuthProvider>
             </CompareProvider>

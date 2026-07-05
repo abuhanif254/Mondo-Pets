@@ -77,7 +77,7 @@ export function HeroCarouselClient({ slides }: HeroCarouselClientProps) {
   const isDarkBackground = currentSlide.backgroundColor === '#1d4ed8' || currentSlide.backgroundColor === '#e11d48';
 
   return (
-    <div className="relative w-full rounded-xl overflow-hidden shadow-2xl group min-h-[300px] md:min-h-[360px]">
+    <div className="relative w-full rounded-xl overflow-hidden shadow-2xl group min-h-[260px] sm:min-h-[280px] md:min-h-[380px]">
       
       {/* Slide Content */}
       <div 
@@ -85,9 +85,9 @@ export function HeroCarouselClient({ slides }: HeroCarouselClientProps) {
         style={{ backgroundColor: currentSlide.backgroundColor }}
       >
         {/* Left/Middle Content */}
-        <div className="relative z-10 w-full md:w-1/2 p-10 md:p-14 lg:p-20 flex flex-col items-center md:items-start text-center md:text-left">
+        <div className="relative z-10 w-full md:w-1/2 px-4 pt-4 pb-10 sm:p-8 md:p-14 lg:p-20 flex flex-col items-center md:items-start text-center md:text-left">
           <h2 
-            className={`text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-4 transition-all duration-700 transform translate-y-0 opacity-100 ${isDarkBackground ? 'text-white' : 'text-slate-900'}`}
+            className={`text-xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-1 sm:mb-4 transition-all duration-700 transform translate-y-0 opacity-100 ${isDarkBackground ? 'text-white' : 'text-slate-900'}`}
             key={`title-${currentIndex}`}
           >
             {currentSlide.title}
@@ -95,7 +95,7 @@ export function HeroCarouselClient({ slides }: HeroCarouselClientProps) {
           
           {currentSlide.subtitle && (
             <p 
-              className={`text-lg md:text-xl font-medium mb-8 max-w-md transition-all duration-700 delay-100 transform translate-y-0 opacity-100 ${isDarkBackground ? 'text-white/90' : 'text-slate-700'}`}
+              className={`text-xs sm:text-lg md:text-xl font-medium mb-3 sm:mb-8 max-w-md transition-all duration-700 delay-100 transform translate-y-0 opacity-100 ${isDarkBackground ? 'text-white/90' : 'text-slate-700'}`}
               key={`subtitle-${currentIndex}`}
             >
               {currentSlide.subtitle}
@@ -104,7 +104,7 @@ export function HeroCarouselClient({ slides }: HeroCarouselClientProps) {
 
           <Link 
             href={currentSlide.ctaUrl}
-            className={`inline-block px-8 py-4 font-bold text-lg rounded-full transition-all hover:scale-105 active:scale-95 shadow-lg ${
+            className={`inline-block px-4 py-2 sm:px-8 sm:py-4 font-bold text-[12px] sm:text-lg rounded-full transition-all hover:scale-105 active:scale-95 shadow-lg ${
               isDarkBackground 
                 ? 'bg-white text-slate-900 hover:bg-slate-50' 
                 : 'bg-blue-700 text-white hover:bg-blue-800'
@@ -116,29 +116,31 @@ export function HeroCarouselClient({ slides }: HeroCarouselClientProps) {
 
         {/* Right Image Content */}
         {currentSlide.imageUrl && (
-          <div className="relative w-full md:w-1/2 h-48 md:h-full flex items-end md:items-center justify-center p-4">
+          <div className="relative w-full md:w-1/2 h-24 sm:h-40 md:h-full flex items-end md:items-center justify-center p-4">
             <Image 
               src={currentSlide.imageUrl} 
               alt={currentSlide.title}
               key={`image-${currentIndex}`}
               fill
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-contain object-bottom md:object-center animate-in fade-in zoom-in duration-700"
             />
           </div>
         )}
       </div>
 
-      {/* Navigation Arrows (Hidden by default, shown on hover) */}
-      <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 hover:bg-black/40 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm z-20">
+      {/* Navigation Arrows (Hidden by default, shown on hover, hidden on mobile) */}
+      <button onClick={prevSlide} className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 hover:bg-black/40 text-white items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm z-20">
         <ChevronLeft className="w-8 h-8" />
       </button>
-      <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 hover:bg-black/40 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm z-20">
+      <button onClick={nextSlide} className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 hover:bg-black/40 text-white items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm z-20">
         <ChevronRight className="w-8 h-8" />
       </button>
 
       {/* Bottom Controls / Progress Bar */}
       {slides.length > 1 && (
-        <div className="absolute bottom-6 left-0 right-0 flex justify-center items-center gap-4 z-20 px-4">
+        <div className="absolute bottom-2.5 left-0 right-0 flex justify-center items-center gap-4 z-20 px-4">
           <button 
             onClick={() => setIsPlaying(!isPlaying)}
             className={`w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-md transition-colors ${isDarkBackground ? 'bg-white/20 text-white hover:bg-white/30' : 'bg-black/10 text-slate-900 hover:bg-black/20'}`}
@@ -146,14 +148,15 @@ export function HeroCarouselClient({ slides }: HeroCarouselClientProps) {
             {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-1" />}
           </button>
           
-          <div className="flex gap-2">
+          <div className="flex gap-1.5 sm:gap-2">
             {slides.map((_, index) => (
               <button 
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`relative h-1.5 rounded-full overflow-hidden transition-all ${
-                  index === currentIndex ? 'w-16' : 'w-8 opacity-50 hover:opacity-100'
+                className={`relative h-1 sm:h-1.5 !important min-h-0 p-0 rounded-full overflow-hidden transition-all ${
+                  index === currentIndex ? 'w-8 sm:w-16' : 'w-4 sm:w-8 opacity-50 hover:opacity-100'
                 } ${isDarkBackground ? 'bg-white/30' : 'bg-black/20'}`}
+                style={{ minHeight: '0px', padding: '0px' }}
               >
                 {index === currentIndex && (
                   <div 

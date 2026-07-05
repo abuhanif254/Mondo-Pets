@@ -43,4 +43,5 @@ export async function setSession(userId: string) {
 export async function clearSession() {
   const cookieStore = await cookies();
   cookieStore.delete('mondo_auth_token');
+  cookieStore.delete('admin_token');
 }

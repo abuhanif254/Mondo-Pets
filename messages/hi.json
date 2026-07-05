@@ -4,7 +4,7 @@
     "subtitle": "आपके प्यारे साथियों के लिए प्रीमियम देखभाल, खिलौने और भोजन।",
     "featuredToys": "विशेष खिलौने",
     "featuredFood": "प्रीमियम पेट फ़ूड",
-    "latestAdvice": "नवीनतम चिकित्सा सलाह",
+    "latestAdvice": "नवीनतम पेट सलाह",
     "viewAll": "सभी देखें"
   },
   "ToysPage": {
@@ -20,8 +20,28 @@
     "subtitle": "आपके पालतू जानवर की भलाई के लिए बुद्धिमान डॉक्टरों से विशेषज्ञ सलाह।"
   },
   "BlogPage": {
-    "title": "मोंडो पेट्स ब्लॉग",
-    "subtitle": "नवीनतम टिप्स, ट्रिक्स और स्वास्थ्य सलाह पढ़ें।"
+    "title": "पेट एडवाइस",
+    "subtitle": "पालतू जानवरों के मालिकों के लिए विशेषज्ञ-लिखित गाइड, स्वास्थ्य सुझाव और विश्वसनीय उत्पाद सलाह।",
+    "heroEyebrow": "मोंडो पेट्स द्वारा",
+    "featuredLabel": "विशेष लेख",
+    "allArticles": "सभी लेख",
+    "filterAll": "सभी विषय",
+    "filterDogs": "कुत्ते",
+    "filterCats": "बिल्लियाँ",
+    "filterNutrition": "पोषण",
+    "filterHealth": "स्वास्थ्य",
+    "filterTraining": "प्रशिक्षण",
+    "filterGrooming": "ग्रूमिंग",
+    "readMore": "लेख पढ़ें",
+    "readTime": "मिनट पढ़ें",
+    "by": "द्वारा",
+    "searchPlaceholder": "लेख खोजें...",
+    "noResults": "कोई लेख नहीं मिला।",
+    "latestArticles": "नवीनतम लेख",
+    "popularThis": "इस सप्ताह लोकप्रिय",
+    "loadMore": "और लेख लोड करें",
+    "breadcrumbHome": "होम",
+    "breadcrumbBlog": "पेट एडवाइस"
   },
   "RightSidebar": {
     "trendingDeals": "ट्रेंडिंग डील्स",
@@ -40,7 +60,7 @@
     "easyReturns": "आसान वापसी"
   },
   "SearchOverlay": {
-    "placeholder": "उत्पाद, ब्लॉग और बहुत कुछ खोजें...",
+    "placeholder": "उत्पाद, लेख और बहुत कुछ खोजें...",
     "searching": "खोज रहा है...",
     "noResults": "के लिए कोई परिणाम नहीं मिला",
     "typeMore": "खोजने के लिए कम से कम 2 अक्षर टाइप करें।",
@@ -56,8 +76,8 @@
     "learn": "सीखें",
     "care": "देखभाल और उपचार",
     "careDesc": "चिकित्सा सलाह और गाइड",
-    "blog": "पेट ब्लॉग",
-    "blogDesc": "टिप्स, समाचार और कहानियां",
+    "blog": "पेट एडवाइस",
+    "blogDesc": "विशेषज्ञ सुझाव, स्वास्थ्य गाइड और अधिक",
     "forum": "मंच",
     "deals": "सौदा",
     "newArrivals": "नये आगमन"

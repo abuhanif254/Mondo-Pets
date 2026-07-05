@@ -4,7 +4,7 @@
     "subtitle": "Erstklassige Pflege, Spielzeug und Futter für Ihre geliebten Begleiter.",
     "featuredToys": "Beliebte Spielzeuge",
     "featuredFood": "Premium Tiernahrung",
-    "latestAdvice": "Aktuelle medizinische Ratschläge",
+    "latestAdvice": "Neueste Haustier-Ratschläge",
     "viewAll": "Alle ansehen"
   },
   "ToysPage": {
@@ -20,8 +20,28 @@
     "subtitle": "Kompetente Beratung durch erfahrene Tierärzte für das Wohlbefinden Ihres Haustieres."
   },
   "BlogPage": {
-    "title": "Mondo Pets Blog",
-    "subtitle": "Lesen Sie die neuesten Tipps, Tricks und Gesundheitsratschläge."
+    "title": "Haustier-Ratgeber",
+    "subtitle": "Von Experten verfasste Leitfäden, Gesundheitstipps und vertrauenswürdige Produktempfehlungen für Tierhalter.",
+    "heroEyebrow": "von Mondo Pets",
+    "featuredLabel": "Empfohlener Artikel",
+    "allArticles": "Alle Artikel",
+    "filterAll": "Alle Themen",
+    "filterDogs": "Hunde",
+    "filterCats": "Katzen",
+    "filterNutrition": "Ernährung",
+    "filterHealth": "Gesundheit",
+    "filterTraining": "Training",
+    "filterGrooming": "Pflege",
+    "readMore": "Artikel lesen",
+    "readTime": "Min. Lesezeit",
+    "by": "Von",
+    "searchPlaceholder": "Artikel suchen...",
+    "noResults": "Keine Artikel gefunden.",
+    "latestArticles": "Neueste Artikel",
+    "popularThis": "Diese Woche beliebt",
+    "loadMore": "Weitere Artikel laden",
+    "breadcrumbHome": "Startseite",
+    "breadcrumbBlog": "Haustier-Ratgeber"
   },
   "RightSidebar": {
     "trendingDeals": "Trend-Angebote",
@@ -40,7 +60,7 @@
     "easyReturns": "Einfache Rückgabe"
   },
   "SearchOverlay": {
-    "placeholder": "Suche nach Produkten, Blogs und mehr...",
+    "placeholder": "Suche nach Produkten, Artikeln und mehr...",
     "searching": "Suchen...",
     "noResults": "Keine Ergebnisse gefunden für",
     "typeMore": "Tippen Sie mindestens 2 Zeichen, um zu suchen.",
@@ -56,8 +76,8 @@
     "learn": "Lernen",
     "care": "Pflege & Behandlung",
     "careDesc": "Medizinische Tipps & Ratgeber",
-    "blog": "Haustier-Blog",
-    "blogDesc": "Tipps, News und Geschichten",
+    "blog": "Haustier-Ratgeber",
+    "blogDesc": "Expertentipps, Gesundheitsratgeber & mehr",
     "forum": "Forum",
     "deals": "Angebote",
     "newArrivals": "Neuheiten"

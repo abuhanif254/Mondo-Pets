@@ -14,6 +14,9 @@ export default async function middleware(req: NextRequest) {
   
   // Check if it's an admin route (e.g. /en/admin, /bn/admin/dashboard, etc)
   const isAdminRoute = /^\/(bn|en|hi|de|es)\/admin/.test(pathname);
+  
+  // Check if it's a protected client route
+  const isClientProtectedRoute = /^\/(bn|en|hi|de|es)\/(account|wishlist)/.test(pathname);
 
   if (isAdminRoute && !pathname.endsWith('/admin/login')) {
     const token = req.cookies.get('admin_token')?.value;
@@ -32,6 +35,17 @@ export default async function middleware(req: NextRequest) {
       const loginUrl = new URL(pathname.replace(/\/admin.*$/, '/admin/login'), req.url);
       return NextResponse.redirect(loginUrl);
     }
+  }
+
+  if (isClientProtectedRoute) {
+    const sessionToken = req.cookies.get('mondo_auth_token')?.value;
+    if (!sessionToken) {
+      const loginUrl = new URL(`/${pathname.split('/')[1]}/login`, req.url);
+      return NextResponse.redirect(loginUrl);
+    }
+    // We don't verify the JWT payload here to avoid DB calls in middleware,
+    // the actual pages should verify the session via the server.
+    // The middleware just blocks completely unauthenticated requests quickly.
   }
 
   // Pass through to next-intl middleware

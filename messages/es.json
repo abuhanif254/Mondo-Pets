@@ -4,7 +4,7 @@
     "subtitle": "Atención, juguetes y alimentación de primera calidad para sus queridos compañeros.",
     "featuredToys": "Juguetes Destacados",
     "featuredFood": "Comida Premium",
-    "latestAdvice": "Últimos Consejos Médicos",
+    "latestAdvice": "Últimos Consejos para Mascotas",
     "viewAll": "Ver Todos"
   },
   "ToysPage": {
@@ -20,8 +20,28 @@
     "subtitle": "Consejos expertos de médicos sabios para el bienestar de su mascota."
   },
   "BlogPage": {
-    "title": "Blog de Mondo Pets",
-    "subtitle": "Lea los últimos consejos, trucos y recomendaciones de salud."
+    "title": "Consejos para Mascotas",
+    "subtitle": "Guías escritas por expertos, consejos de salud y recomendaciones de productos para dueños de mascotas.",
+    "heroEyebrow": "por Mondo Pets",
+    "featuredLabel": "Artículo Destacado",
+    "allArticles": "Todos los Artículos",
+    "filterAll": "Todos los Temas",
+    "filterDogs": "Perros",
+    "filterCats": "Gatos",
+    "filterNutrition": "Nutrición",
+    "filterHealth": "Salud",
+    "filterTraining": "Adiestramiento",
+    "filterGrooming": "Estética",
+    "readMore": "Leer Artículo",
+    "readTime": "min de lectura",
+    "by": "Por",
+    "searchPlaceholder": "Buscar artículos...",
+    "noResults": "No se encontraron artículos.",
+    "latestArticles": "Últimos Artículos",
+    "popularThis": "Popular Esta Semana",
+    "loadMore": "Cargar Más Artículos",
+    "breadcrumbHome": "Inicio",
+    "breadcrumbBlog": "Consejos para Mascotas"
   },
   "RightSidebar": {
     "trendingDeals": "Ofertas de Tendencia",
@@ -40,7 +60,7 @@
     "easyReturns": "Devoluciones Fáciles"
   },
   "SearchOverlay": {
-    "placeholder": "Busca productos, blogs, y más...",
+    "placeholder": "Busca productos, artículos, y más...",
     "searching": "Buscando...",
     "noResults": "No se encontraron resultados para",
     "typeMore": "Escribe al menos 2 caracteres para buscar.",
@@ -56,8 +76,8 @@
     "learn": "Aprender",
     "care": "Cuidado y Tratamiento",
     "careDesc": "Guías y consejos médicos",
-    "blog": "Blog de Mascotas",
-    "blogDesc": "Consejos, noticias e historias",
+    "blog": "Consejos para Mascotas",
+    "blogDesc": "Consejos de expertos, guías de salud y más",
     "forum": "Foro",
     "deals": "Ofertas",
     "newArrivals": "Novedades"

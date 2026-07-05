@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { subscribeToNewsletter } from '@/app/actions';
 import { ArrowRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 
-export function NewsletterForm({ translations }: { translations: any }) {
+export function NewsletterForm({ translations = {}, variant }: { translations?: any, variant?: string }) {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{ success: boolean; message: string } | null>(null);
 

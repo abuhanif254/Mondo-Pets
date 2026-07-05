@@ -24,7 +24,7 @@ export function CompareBar() {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 100, opacity: 0 }}
-        className="fixed bottom-0 left-0 right-0 z-50 p-4 pointer-events-none"
+        className="fixed bottom-[calc(64px+env(safe-area-inset-bottom))] lg:bottom-0 left-0 right-0 z-50 p-2 sm:p-4 pointer-events-none"
       >
         <div className="container mx-auto max-w-4xl">
           <div className="bg-popover border border-border shadow-2xl rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 pointer-events-auto">

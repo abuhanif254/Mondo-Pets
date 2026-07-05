@@ -7,6 +7,7 @@ import { searchGlobal } from '@/app/actions';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { triggerHaptic } from '@/lib/haptic';
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -68,36 +69,45 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-sm flex justify-center items-start pt-16 sm:pt-24 px-4"
-          onClick={onClose}
+          className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-sm flex justify-center items-start pt-0 sm:pt-24 px-0 sm:px-4"
+          onClick={() => {
+            triggerHaptic(10);
+            onClose();
+          }}
         >
           <motion.div 
             initial={{ scale: 0.95, opacity: 0, y: -20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: -20 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="w-full max-w-3xl bg-card border border-border rounded-2xl shadow-2xl overflow-hidden"
+            className="w-full h-full sm:h-auto max-w-3xl bg-card border-none sm:border border-border rounded-none sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center px-4 py-4 border-b border-border">
+            <div className="flex items-center px-4 py-4 border-b border-border flex-shrink-0">
               <Search className="h-5 w-5 text-muted-foreground mr-3" />
               <input
                 ref={inputRef}
                 type="text"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  if (e.target.value.length % 3 === 0) triggerHaptic(5);
+                }}
                 placeholder={t('placeholder')}
                 className="flex-1 bg-transparent text-lg focus:outline-none placeholder:text-muted-foreground/60"
               />
               <button 
-                onClick={onClose}
+                onClick={() => {
+                  triggerHaptic(10);
+                  onClose();
+                }}
                 className="p-2 rounded-full hover:bg-muted text-muted-foreground transition-colors"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
 
-            <div className="max-h-[60vh] overflow-y-auto p-4 sm:p-6">
+            <div className="flex-1 sm:max-h-[60vh] overflow-y-auto p-4 sm:p-6">
               {isLoading ? (
                 <div className="flex items-center justify-center py-12 text-muted-foreground">
                   <Loader2 className="h-6 w-6 animate-spin mr-2" />
