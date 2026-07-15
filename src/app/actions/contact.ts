@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { clearCacheByTag } from './revalidate';
 
 export async function submitContactForm(formData: FormData) {
   const name = formData.get('name') as string;
@@ -53,7 +54,8 @@ export async function markMessageAsRead(id: string) {
         data: { isRead: !message.isRead }
       });
       revalidatePath('/admin/messages');
-      return { success: true };
+      clearCacheByTag('admin-update');
+    return { success: true };
     }
     return { success: false };
   } catch (error) {
@@ -66,6 +68,7 @@ export async function deleteMessage(id: string) {
   try {
     await prisma.contactMessage.delete({ where: { id } });
     revalidatePath('/admin/messages');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error) {
     console.error('Failed to delete message:', error);

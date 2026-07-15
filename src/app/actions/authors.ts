@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { clearCacheByTag } from './revalidate';
 
 export async function getAuthors() {
   try {
@@ -42,6 +43,7 @@ export async function createAuthor(data: {
     });
     revalidatePath('/admin/authors');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true, author };
   } catch (error: any) {
     console.error('Failed to create author:', error);
@@ -73,6 +75,7 @@ export async function updateAuthor(id: string, data: {
     });
     revalidatePath('/admin/authors');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true, author };
   } catch (error: any) {
     console.error('Failed to update author:', error);
@@ -104,6 +107,7 @@ export async function deleteAuthor(id: string) {
     await prisma.author.delete({ where: { id } });
     revalidatePath('/admin/authors');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to delete author:', error);

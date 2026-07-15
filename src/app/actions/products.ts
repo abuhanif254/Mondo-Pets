@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { clearCacheByTag } from './revalidate';
 
 export async function createProduct(data: any) {
   try {
@@ -39,6 +40,7 @@ export async function createProduct(data: any) {
     revalidatePath('/admin/products');
     revalidatePath('/admin/categories');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true, product };
   } catch (error: any) {
     console.error('Failed to create product:', error);
@@ -83,6 +85,7 @@ export async function updateProduct(id: string, data: any) {
     revalidatePath('/admin/products');
     revalidatePath('/admin/categories');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true, product };
   } catch (error: any) {
     console.error('Failed to update product:', error);
@@ -96,6 +99,7 @@ export async function deleteProduct(id: string) {
     revalidatePath('/admin/products');
     revalidatePath('/admin/categories');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to delete product:', error);

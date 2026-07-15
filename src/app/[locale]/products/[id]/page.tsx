@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export const revalidate = 3600;
+
 
 /** Render n filled/half/empty stars */
 function StarDisplay({ rating, max = 5 }: { rating: number; max?: number }) {

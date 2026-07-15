@@ -2,11 +2,13 @@
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { clearCacheByTag } from './revalidate';
 
 export async function deleteUser(id: string) {
   try {
     await prisma.user.delete({ where: { id } });
     revalidatePath('/admin/users');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to delete user:', error);
@@ -26,6 +28,7 @@ export async function addBadgeToUser(id: string, badge: string) {
       });
     }
     revalidatePath('/admin/users');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to add badge:', error);
@@ -43,6 +46,7 @@ export async function removeBadgeFromUser(id: string, badge: string) {
       data: { badges: user.badges.filter(b => b !== badge) }
     });
     revalidatePath('/admin/users');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to remove badge:', error);

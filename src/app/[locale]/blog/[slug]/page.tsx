@@ -4,8 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { 
   getBlogBySlug, 
   getAllBlogSlugs,
-  getRelatedBlogs, 
-  incrementBlogViewCount, 
+  getRelatedBlogs,
   getMidArticleAffiliateProduct 
 } from '@/app/actions';
 
@@ -18,6 +17,7 @@ import { BlogAuthorCard } from '@/components/BlogAuthorCard';
 import { BlogRelatedPosts } from '@/components/BlogRelatedPosts';
 import { BlogAffiliateCard } from '@/components/BlogAffiliateCard';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
+import { BlogViewTracker } from '@/components/BlogViewTracker';
 
 export async function generateStaticParams() {
   const slugs = await getAllBlogSlugs();
@@ -88,8 +88,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
     notFound();
   }
 
-  // Fire-and-forget view count increment
-  incrementBlogViewCount(slug);
+
 
   const relatedBlogs = await getRelatedBlogs(blog.categoryId, slug, 3);
   const midArticleProduct = await getMidArticleAffiliateProduct(blog.categoryId);
@@ -168,6 +167,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
       )}
       
       <BlogReadingProgress />
+      <BlogViewTracker slug={slug} />
 
       <main className="min-h-screen bg-background pb-6 lg:pb-10 mobile-page-bottom">
         

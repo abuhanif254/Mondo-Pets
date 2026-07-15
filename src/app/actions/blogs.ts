@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { clearCacheByTag } from './revalidate';
 
 export async function createBlog(data: any) {
   try {
@@ -31,6 +32,7 @@ export async function createBlog(data: any) {
     revalidatePath('/admin/categories');
     revalidatePath('/admin/authors');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true, blog };
   } catch (error: any) {
     console.error('Failed to create blog:', error);
@@ -67,6 +69,7 @@ export async function updateBlog(id: string, data: any) {
     revalidatePath('/admin/categories');
     revalidatePath('/admin/authors');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true, blog };
   } catch (error: any) {
     console.error('Failed to update blog:', error);
@@ -81,6 +84,7 @@ export async function deleteBlog(id: string) {
     revalidatePath('/admin/categories');
     revalidatePath('/admin/authors');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to delete blog:', error);

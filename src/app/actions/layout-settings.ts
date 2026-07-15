@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { clearCacheByTag } from './revalidate';
 
 // Top Banner
 export async function getTopBanners() {
@@ -13,6 +14,7 @@ export async function createTopBanner(data: any) {
     const banner = await prisma.topBannerAd.create({ data });
     revalidatePath('/admin/layout-settings');
     revalidatePath('/');
+    clearCacheByTag('admin-update');
     return { success: true, banner };
   } catch (error: any) {
     return { success: false, message: error.message };
@@ -24,6 +26,7 @@ export async function updateTopBanner(id: string, data: any) {
     const banner = await prisma.topBannerAd.update({ where: { id }, data });
     revalidatePath('/admin/layout-settings');
     revalidatePath('/');
+    clearCacheByTag('admin-update');
     return { success: true, banner };
   } catch (error: any) {
     return { success: false, message: error.message };
@@ -35,6 +38,7 @@ export async function deleteTopBanner(id: string) {
     await prisma.topBannerAd.delete({ where: { id } });
     revalidatePath('/admin/layout-settings');
     revalidatePath('/');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     return { success: false, message: error.message };
@@ -51,6 +55,7 @@ export async function createHeroSlide(data: any) {
     const slide = await prisma.heroSlide.create({ data });
     revalidatePath('/admin/layout-settings');
     revalidatePath('/');
+    clearCacheByTag('admin-update');
     return { success: true, slide };
   } catch (error: any) {
     return { success: false, message: error.message };
@@ -62,6 +67,7 @@ export async function updateHeroSlide(id: string, data: any) {
     const slide = await prisma.heroSlide.update({ where: { id }, data });
     revalidatePath('/admin/layout-settings');
     revalidatePath('/');
+    clearCacheByTag('admin-update');
     return { success: true, slide };
   } catch (error: any) {
     return { success: false, message: error.message };
@@ -73,6 +79,7 @@ export async function deleteHeroSlide(id: string) {
     await prisma.heroSlide.delete({ where: { id } });
     revalidatePath('/admin/layout-settings');
     revalidatePath('/');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     return { success: false, message: error.message };
@@ -89,6 +96,7 @@ export async function createListicle(data: any) {
     const listicle = await prisma.listicle.create({ data });
     revalidatePath('/admin/layout-settings');
     revalidatePath('/');
+    clearCacheByTag('admin-update');
     return { success: true, listicle };
   } catch (error: any) {
     return { success: false, message: error.message };
@@ -100,6 +108,7 @@ export async function updateListicle(id: string, data: any) {
     const listicle = await prisma.listicle.update({ where: { id }, data });
     revalidatePath('/admin/layout-settings');
     revalidatePath('/');
+    clearCacheByTag('admin-update');
     return { success: true, listicle };
   } catch (error: any) {
     return { success: false, message: error.message };
@@ -111,6 +120,7 @@ export async function deleteListicle(id: string) {
     await prisma.listicle.delete({ where: { id } });
     revalidatePath('/admin/layout-settings');
     revalidatePath('/');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     return { success: false, message: error.message };

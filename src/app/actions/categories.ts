@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { clearCacheByTag } from './revalidate';
 
 export async function getCategories() {
   try {
@@ -35,6 +36,7 @@ export async function createCategory(data: { name: string; slug: string; descrip
     });
     revalidatePath('/admin/categories');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true, category };
   } catch (error: any) {
     console.error('Failed to create category:', error);
@@ -59,6 +61,7 @@ export async function updateCategory(id: string, data: { name: string; slug: str
     });
     revalidatePath('/admin/categories');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true, category };
   } catch (error: any) {
     console.error('Failed to update category:', error);
@@ -90,6 +93,7 @@ export async function deleteCategory(id: string) {
     await prisma.category.delete({ where: { id } });
     revalidatePath('/admin/categories');
     revalidatePath('/admin');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to delete category:', error);

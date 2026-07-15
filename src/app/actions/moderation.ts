@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { clearCacheByTag } from './revalidate';
 
 export async function approveReview(id: string) {
   try {
@@ -11,6 +12,7 @@ export async function approveReview(id: string) {
     });
     revalidatePath('/admin/moderation');
     // Also revalidate the product page where reviews are displayed
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to approve review:', error);
@@ -24,6 +26,7 @@ export async function deleteReview(id: string) {
       where: { id }
     });
     revalidatePath('/admin/moderation');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to delete review:', error);
@@ -38,6 +41,7 @@ export async function approveQuestion(id: string) {
       data: { isApproved: true }
     });
     revalidatePath('/admin/moderation');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to approve question:', error);
@@ -51,6 +55,7 @@ export async function deleteQuestion(id: string) {
       where: { id }
     });
     revalidatePath('/admin/moderation');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to delete question:', error);
@@ -65,6 +70,7 @@ export async function answerQuestion(id: string, answer: string) {
       data: { answer, isApproved: true } // Answering implicitly approves it
     });
     revalidatePath('/admin/moderation');
+    clearCacheByTag('admin-update');
     return { success: true };
   } catch (error: any) {
     console.error('Failed to answer question:', error);

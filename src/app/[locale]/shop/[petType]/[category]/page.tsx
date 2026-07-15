@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 
-export const revalidate = 86400; // Cache for 24 hours to maximize SEO performance
+
 
 interface PageProps {
   params: Promise<{

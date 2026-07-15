@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 
-export const revalidate = 3600;
+
 
 const PET_CATEGORIES = [
   { label: 'Dogs',     emoji: '🐕', href: '/toys/dog',   color: 'from-amber-400 to-orange-500',   bg: 'bg-amber-50 dark:bg-amber-950/30',  icon: Bone },
